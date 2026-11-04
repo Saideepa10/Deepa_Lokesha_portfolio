@@ -590,4 +590,25 @@ cb.addEventListener('click', function(){
   window.addEventListener('resize', resize); resize();
   if(reduce){ draw(0); } else { requestAnimationFrame(draw); }
 })();
+  
+document.querySelectorAll('[data-resume]').forEach(button => {
+  button.addEventListener('click', async event => {
+    event.preventDefault();
+
+    const pdfUrl = 'DeepaLokesha_Resume.pdf';
+    const freshUrl = `${pdfUrl}?v=${Date.now()}`;
+
+    if (button.dataset.resume === 'view') {
+      window.open(freshUrl, '_blank', 'noopener');
+    } else {
+      const link = document.createElement('a');
+      link.href = freshUrl;
+      link.download = 'DeepaLokesha_Resume.pdf';
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+    }
+  });
+});
+
 </script>
